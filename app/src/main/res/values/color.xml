@@ -1,0 +1,105 @@
+<resources>
+
+    <color name="redLight">#fac8c8</color>
+    <color name="redNormal">#dcaaaa</color>
+    <color name="redDark">#be8c8c</color>
+    <color name="blueLight">#c8c8fa</color>
+    <color name="blueNormal">#aaaadc</color>
+    <color name="blueDark">#8c8cbe</color>
+
+
+    <color name="slidemenu_bg">#323232</color>
+
+    <color name="black">#000000</color>
+    <color name="dark_grey">#4d4d4d</color>
+    <color name="normal_grey">#9a9a9a</color>
+    <color name="light_grey">#cccccc</color>
+
+    <color name="light_light_grey">#e5e5e5</color>
+
+    <color name="normal_red">#ff3434</color>
+    <color name="at_color">#116198</color>
+
+
+    <color name="grey_major">#bdbdbd</color>
+    <color name="grey_minor">#7a7a7a</color>
+    <color name="huilanrange_light">#b0bec5</color>
+    <color name="grey_background">#f2f2f2</color>
+
+    <color name="topbar_bg">#607d8b</color>
+
+
+    <color name="light_green">#99cc00</color>
+
+    <color name="greyblue">#607d8b</color>
+    <color name="light_greyblue3">#d3d8da</color>
+    <color name="light_greyblue2">#96b8c6</color>
+    <color name="light_orange">#ffbc70</color>
+    <color name="pink">#ff6565</color>
+    <color name="pink2">#db4c4c</color>
+
+    <color name="background_tab_pressed">#6633B5E5</color>
+
+
+    <!-- 4.0 -->
+    <color name="zd_black">#212121</color>
+    <color name="fzd_black">#636363</color>
+    <color name="orange">#f7c13d</color>
+    <color name="light_greyblue">#b0bfc6</color>
+
+    <color name="blue">#73c7ea</color>
+    <color name="light_blue">#95d1ff</color>
+    <color name="dark_blue">#30a3ce</color>
+    <color name="light_blue_jia">#cce9ff</color>
+    <color name="fzd_grey">#bdbdbd</color>
+    <color name="bg_yellow">#f9f8f4</color>
+    <color name="dark_bg_grey">#dadada</color>
+    <color name="red">#ff7e5b</color>
+    <color name="dark_orange">#e68c22</color>
+    <color name="dark_green">#a7bd24</color>
+    <color name="dark_red">#eb5128</color>
+
+
+    <color name="zd_gery">#7a7a7a</color>
+    <color name="dark_blue_jia">#006a89</color>
+    <color name="red_tq">#f1947a</color>
+    <color name="green_tq">#c8d577</color>
+
+    <color name="alpha_fzd_black">#9c000000</color>
+    <color name="alpha_87_white">#deffffff</color>
+    <color name="alpha_zd_grey">#85000000</color>
+    <color name="alpha_blue">#8573c7ea</color>
+
+
+    <color name="popup_frombottom_selftransparent">#99000000</color>
+
+    <color name="blue_lev1">#cce9ff</color>
+    <color name="transparent99">#01ffffff</color>
+
+    <color name="pct50grey">#808080</color>
+    <color name="yellow">#ffff00</color>
+
+    <color name="aa_grey">#aaaaaa</color>
+
+
+    <!-- ZXING COLOR -->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="gray">#808080</color>
+    <color name="lightgreen">#99CC33</color>
+    <color name="green">#00CC00</color>
+
+
+</resources>
