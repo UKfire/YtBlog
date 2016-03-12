@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/pull_to_refresh_header_content"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:paddingBottom="8dp">
+
+
+        <ImageView
+            android:id="@+id/smile"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/refresh_smile_00" />
+
+        <ImageView
+            android:id="@+id/pull_to_refresh_header_arrow"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/refresh_smile_round" />
+
+
+        <TextView
+            android:id="@+id/pull_to_refresh_header_hint_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/smile"
+            android:text="发现更多快乐"
+            android:textColor="@color/gray_four"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</LinearLayout>

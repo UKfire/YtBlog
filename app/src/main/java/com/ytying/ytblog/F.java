@@ -7,12 +7,12 @@ import android.content.Context;
  */
 public class F {
 
+    public static final String DB_NAME = "new_yt_database";
+
     public static Context AppContext;
 
     public static String getAppName(){
-        return "傻猴博客";
+        return "苹子与桔果";
     }
-
-
 
 }

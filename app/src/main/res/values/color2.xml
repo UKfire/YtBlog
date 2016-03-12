@@ -42,7 +42,7 @@
     <color name="white">#ffffff</color>
     <color name="orange_background">#f7f5ed</color>
     <color name="topbarColor">@color/black</color>
-    <color name="actionbarColor">@color/white</color>
+    <color name="actionbarColor">@color/green_stone</color>
     <color name="statusColor">@color/white</color>
 
     <color name="alpha_50pct_white">#80FFFFFF</color>
@@ -52,4 +52,6 @@
     <color name="alpha_30pct_black">#48000000</color>
     <color name="alpha_0x20_black">#20000000</color>
     <color name="alpha_0x05_black">#05000000</color>
+    <color name="alpha_13pct_black">#20000000</color>
+
 </resources>

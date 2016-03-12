@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="登 录"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/funId_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_toLeftOf="@+id/mtvSend"
+        android:layout_toRightOf="@+id/btAt"
+        android:background="@drawable/textfield_gray_light"
+        android:hint="请输入账号"
+        android:paddingLeft="12dp"
+        android:textColor="@color/zd_black"
+        android:textColorHint="@color/fzd_grey"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/password_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textfield_gray_light"
+        android:hint="请输入密码"
+        android:paddingLeft="12dp"
+        android:textColor="@color/zd_black"
+        android:textColorHint="@color/fzd_grey"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btn_common_green"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/goto_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="注册"
+        android:textColor="@color/gray_four"
+        android:textSize="16sp" />
+
+</LinearLayout>

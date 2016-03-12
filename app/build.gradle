@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.ytying.ytblog"
-        minSdkVersion 11
+        minSdkVersion 12
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -17,13 +17,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java-gen']
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.squareup:otto:+'
     compile 'com.alibaba:fastjson:1.1.46.android'
-
+    compile 'de.greenrobot:greendao:2.0.0'
     compile 'com.android.support:appcompat-v7:22.2.0'
-
+    compile files('libs/photolibrary.jar')
+    compile files('libs/universalimageloaderlibrary.jar')
+    compile project(':multi-image-selector')
 }
