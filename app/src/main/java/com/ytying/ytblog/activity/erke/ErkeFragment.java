@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.act.person.Act_PersonPage;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
@@ -34,7 +35,8 @@ public class ErkeFragment extends BaseFragment implements IView {
         actionbar.addTextButton("个人主页", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Act_PersonPage.class);
+
+                Intent intent = Act_PersonPage.createIntent(getActivity(), MyUser.getSelf());
                 startActivity(intent);
             }
         }, false);

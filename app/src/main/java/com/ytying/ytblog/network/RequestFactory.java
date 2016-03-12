@@ -12,6 +12,7 @@ public class RequestFactory {
 
     private static final String Login = "login/";
     private static final String Register = "register/";
+    private static final String GetDetailUser = "getDetailUser/";
 
     public static Request createRequest(String url) {
         return new Request(ROOT_URL + url, new HashMap<String, String>());
@@ -39,7 +40,11 @@ public class RequestFactory {
                 .add("backImage", "")
                 .add("province", "")
                 .add("city", "");
+    }
 
+    public static Request GetDetailUser(String funId) {
+        return createRequest(GetDetailUser)
+                .add("funId", funId + "");
     }
 
 }

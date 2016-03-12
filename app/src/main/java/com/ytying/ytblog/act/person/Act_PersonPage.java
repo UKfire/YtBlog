@@ -1,9 +1,11 @@
 package com.ytying.ytblog.act.person;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -12,12 +14,16 @@ import android.widget.TextView;
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.base.BaseActivity;
+import com.ytying.ytblog.model.domin.User;
 import com.ytying.ytblog.network.CallBack;
 import com.ytying.ytblog.network.Network;
+import com.ytying.ytblog.network.RequestFactory;
 import com.ytying.ytblog.network.RequestFactoryFile;
 import com.ytying.ytblog.network.Response;
 import com.ytying.ytblog.utils.BmpUtil;
 import com.ytying.ytblog.utils.DoUtil;
+import com.ytying.ytblog.utils.ImageLoaderUtil;
+import com.ytying.ytblog.utils.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +46,19 @@ public class Act_PersonPage extends BaseActivity {
     private ListView listView;
 
     private ArrayList<String> pathList = new ArrayList<>();
+    private User user = null;
 
     @Override
     protected void initData() {
+        user = (User) getIntent().getSerializableExtra("user");
+        if (user == null)
+            Act_PersonPage.this.finish();
+    }
 
+    public static Intent createIntent(Context ctx, User user) {
+        Intent intent = new Intent(ctx, Act_PersonPage.class);
+        intent.putExtra("user", user);
+        return intent;
     }
 
     @Override
@@ -72,10 +87,41 @@ public class Act_PersonPage extends BaseActivity {
                 startActivityForResult(intent, REQUEST_IMAGE);
             }
         });
+
+        updateUI(user);
+    }
+
+    private void updateUI(User user) {
+        ImageLoaderUtil.getImageLoader(this).displayImage(user.getHeadImage(), headImage, ImageLoaderUtil.getDioRound());
+        ImageLoaderUtil.getImageLoader(this).displayImage(user.getBackImage(), background, ImageLoaderUtil.getDioSquare());
+        nickname.setText(user.getNickname());
+        if (user.getSex().equals("male"))
+            sex.setImageResource(R.mipmap.new_icon_boy);
+        else
+            sex.setImageResource(R.mipmap.new_icon_girl);
+        motto.setText(user.getMotto());
     }
 
     private void Refresh() {
+        showLoading("正在加载个人信息");
+        Network.post(RequestFactory.GetDetailUser(user.getFunId()), new Handler(), new CallBack() {
+            @Override
+            public void onCommon(Response response) {
+                stopLoading();
+            }
 
+            @Override
+            public void onError(Response response) {
+
+            }
+
+            @Override
+            public void onSuccess(Response response) {
+                User user = JsonUtil.Json2T(response.getDataString(), User.class, new User());
+                Log.v("fffff", user.getFunId() + "=" + user.getNickname());
+                updateUI(user);
+            }
+        });
     }
 
 
@@ -118,10 +164,12 @@ public class Act_PersonPage extends BaseActivity {
                 @Override
                 public void onSuccess(Response response) {
                     DoUtil.showToast(Act_PersonPage.this, "上传成功");
+                    Refresh();
                 }
             });
         } else {
 
         }
     }
+
 }

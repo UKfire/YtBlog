@@ -14,11 +14,14 @@ import com.ytying.ytblog.act.register.Act_Register;
 import com.ytying.ytblog.activity.main.MainActivity;
 import com.ytying.ytblog.base.BaseActivity;
 import com.ytying.ytblog.constants.SpKey;
+import com.ytying.ytblog.model.domin.DbUser;
+import com.ytying.ytblog.model.domin.User;
 import com.ytying.ytblog.network.CallBack;
 import com.ytying.ytblog.network.Network;
 import com.ytying.ytblog.network.RequestFactory;
 import com.ytying.ytblog.network.Response;
 import com.ytying.ytblog.utils.DoUtil;
+import com.ytying.ytblog.utils.JsonUtil;
 import com.ytying.ytblog.utils.SpUtil;
 
 /**
@@ -79,6 +82,7 @@ public class Act_Login extends BaseActivity {
                         @Override
                         public void onSuccess(Response response) {
                             SpUtil.saveString(SpKey.USER_FUNID, fId);
+                            DbUser.getInstance().saveUser(JsonUtil.Json2T(response.getDataString(), User.class, new User()));
                             DoUtil.showToast(Act_Login.this, "登录成功");
                             gotoMain();
                         }
