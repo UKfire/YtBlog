@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.ytying.ytblog.act.widget.ActionBarLayout
+        android:id="@+id/today_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.ytying.ytblog.act.widget.ActionBarLayout>
+
+    <com.ytying.ytblog.act.widget.KeListView
+        android:id="@+id/today_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.ytying.ytblog.act.widget.KeListView>
+
+</LinearLayout>
