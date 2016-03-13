@@ -36,6 +36,7 @@ dependencies {
     compile 'com.github.glomadrian:loadingballs:1.1@aar'
     compile 'com.alibaba:fastjson:1.1.46.android'
     compile 'de.greenrobot:greendao:2.0.0'
+    compile 'com.ikimuhendis:ldrawer:0.1'
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile files('libs/photolibrary.jar')
     compile files('libs/universalimageloaderlibrary.jar')
