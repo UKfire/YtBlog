@@ -61,7 +61,7 @@ public class KeListView extends ListView implements AbsListView.OnScrollListener
         this.addHeaderView(header);
 
         footer = inflater.inflate(R.layout.layout_footer, null);
-        footer.findViewById(R.id.load_layout).setVisibility(GONE);
+        footer.findViewById(R.id.metaball).setVisibility(GONE);
         this.addFooterView(footer);
 
         this.setOnScrollListener(this);
@@ -92,7 +92,7 @@ public class KeListView extends ListView implements AbsListView.OnScrollListener
         if (totalItemCount == lastVisibleItem && scrollState == SCROLL_STATE_IDLE) {
             if (!isLoading) {
                 isLoading = true;
-                footer.findViewById(R.id.load_layout).setVisibility(VISIBLE);
+                footer.findViewById(R.id.metaball).setVisibility(VISIBLE);
                 listener.onLoad();
             }
         }
@@ -190,7 +190,7 @@ public class KeListView extends ListView implements AbsListView.OnScrollListener
 
     public void onLoadComplete() {
         isLoading = false;
-        footer.findViewById(R.id.load_layout).setVisibility(GONE);
+        footer.findViewById(R.id.metaball).setVisibility(GONE);
     }
 
     public void setOnRefreshListener(RefreshListener listener) {
