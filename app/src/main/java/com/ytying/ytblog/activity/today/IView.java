@@ -7,4 +7,14 @@ import com.ytying.ytblog.base.BaseIView;
  */
 public interface IView extends BaseIView{
 
+    void onRefreshComplete();
+
+    void onLoadComplete();
+
+    void notifyDataChange();
+
+    void addPage();
+
+    void clearPage();
+
 }

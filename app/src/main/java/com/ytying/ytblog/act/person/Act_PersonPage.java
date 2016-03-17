@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
+import com.ytying.ytblog.YtApp;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.base.BaseActivity;
+import com.ytying.ytblog.event.UpdateHeadViewEvent;
+import com.ytying.ytblog.model.domin.DbUser;
 import com.ytying.ytblog.model.domin.User;
 import com.ytying.ytblog.network.CallBack;
 import com.ytying.ytblog.network.Network;
@@ -75,7 +78,6 @@ public class Act_PersonPage extends BaseActivity {
 
         actionbar.setTitle("个人主页");
         actionbar.setHomeBtnAsBack(this);
-        Refresh();
         headImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,9 +119,16 @@ public class Act_PersonPage extends BaseActivity {
 
             @Override
             public void onSuccess(Response response) {
-                User user = JsonUtil.Json2T(response.getDataString(), User.class, new User());
-                Log.v("fffff", user.getFunId() + "=" + user.getNickname());
-                updateUI(user);
+                final User user = JsonUtil.Json2T(response.getDataString(), User.class, new User());
+                DbUser.getInstance().saveUser(user);
+                MyUser.updateSelf();
+                YtApp.getOtto().post(new UpdateHeadViewEvent());
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateUI(user);
+                    }
+                });
             }
         });
     }

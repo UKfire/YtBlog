@@ -71,7 +71,7 @@ public class User extends DoObject {
     }
 
     public String getCreateTime() {
-        return createTime;
+        return tokay(createTime);
     }
 
     public void setCreateTime(String createTime) {
@@ -79,7 +79,7 @@ public class User extends DoObject {
     }
 
     public Integer getDesigner() {
-        return designer;
+        return tokay(designer);
     }
 
     public void setDesigner(Integer designer) {
@@ -95,7 +95,7 @@ public class User extends DoObject {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return tokay(phoneNumber);
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -103,7 +103,7 @@ public class User extends DoObject {
     }
 
     public String getQqNumber() {
-        return qqNumber;
+        return tokay(qqNumber);
     }
 
     public void setQqNumber(String qqNumber) {
@@ -119,7 +119,7 @@ public class User extends DoObject {
     }
 
     public String getProvince() {
-        return province;
+        return tokay(province);
     }
 
     public void setProvince(String province) {
@@ -127,7 +127,7 @@ public class User extends DoObject {
     }
 
     public String getCity() {
-        return city;
+        return tokay(city);
     }
 
     public void setCity(String city) {
@@ -135,7 +135,7 @@ public class User extends DoObject {
     }
 
     public String getHeadImage() {
-        return headImage;
+        return tokay(headImage);
     }
 
     public void setHeadImage(String headImage) {
@@ -143,7 +143,7 @@ public class User extends DoObject {
     }
 
     public String getBackImage() {
-        return backImage;
+        return tokay(backImage);
     }
 
     public void setBackImage(String backImage) {

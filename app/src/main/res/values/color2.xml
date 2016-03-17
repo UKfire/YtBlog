@@ -42,7 +42,7 @@
     <color name="white">#ffffff</color>
     <color name="orange_background">#f7f5ed</color>
     <color name="topbarColor">@color/black</color>
-    <color name="actionbarColor">@color/green_stone</color>
+    <color name="actionbarColor">@color/red_dark</color>
     <color name="statusColor">@color/white</color>
 
     <color name="alpha_50pct_white">#80FFFFFF</color>

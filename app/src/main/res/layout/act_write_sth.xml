@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_six">
+
+    <com.ytying.ytblog.act.widget.ActionBarLayout
+        android:id="@+id/act_write_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.ytying.ytblog.act.widget.ActionBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/llUp"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        android:layout_below="@+id/act_write_actionbar"
+        android:background="@color/white">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/blogEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="14dp"
+            android:background="@color/white"
+            android:maxLines="5"
+            android:textColor="@color/zd_black"
+            android:textColorHint="@color/gray_four"
+            android:textSize="16sp"></android.support.v7.widget.AppCompatEditText>
+
+        <ImageView
+            android:id="@+id/emoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/selector_newchatbox_emoji" />
+
+    </RelativeLayout>
+
+    <com.ytying.ytblog.act.widget.ChoosedPicBox
+        android:id="@+id/choosedPicBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llUp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="16dp">></com.ytying.ytblog.act.widget.ChoosedPicBox>
+
+    <com.ytying.ytblog.component.emotion.SmileLayout
+        android:id="@+id/write_smile_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible"></com.ytying.ytblog.component.emotion.SmileLayout>
+
+
+</RelativeLayout>

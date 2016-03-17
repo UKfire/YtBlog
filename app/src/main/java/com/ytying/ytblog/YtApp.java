@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.squareup.otto.Bus;
+import com.squareup.otto.ThreadEnforcer;
 import com.ytying.ytblog.act.login.Act_Login;
 import com.ytying.ytblog.model.domin.DaoMaster;
 import com.ytying.ytblog.model.domin.DaoSession;
@@ -17,6 +19,8 @@ public class YtApp extends Application {
 
     private static DaoMaster daoMaster;
     private static DaoSession daoSession;
+
+    private static Bus ottoBus;
 
     @Override
     public void onCreate() {
@@ -55,4 +59,11 @@ public class YtApp extends Application {
         }
         return daoSession;
     }
+
+    public static Bus getOtto() {
+        if (ottoBus == null)
+            ottoBus = new Bus(ThreadEnforcer.MAIN);
+        return ottoBus;
+    }
+
 }

@@ -72,8 +72,6 @@ public class Act_Login extends BaseActivity {
                         @Override
                         public void onCommon(Response response) {
                             stopLoading();
-
-                            //TODO cancel
                             gotoMain();
                         }
 

@@ -33,6 +33,13 @@ public class DimenUtil {
         return (int) (dpValue * scale + 0.5f);
     }
 
+    /**
+     * 将sp值转换为px值，保证文字大小不变
+     */
+    public static int sp2px( float spValue) {
+        final float fontScale = F.AppContext.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
+    }
 
     public static int getPxPerDP()
     {

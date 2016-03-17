@@ -1,148 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray_six">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/fragment_container"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_above="@+id/main_tablayout"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/gray_six">
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/main_tablayout"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="52dp">
-
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
+            android:layout_above="@+id/main_tablayout"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_tablayout"
+            android:background="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
             android:layout_height="52dp">
 
-            <RelativeLayout
-                android:id="@+id/tabToday"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onTabClicked"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
                 android:layout_height="52dp">
 
-                <ImageView
-                    android:id="@+id/ivToday"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/selector_tabbat_today"
-                    android:scaleType="fitXY"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
+                <RelativeLayout
+                    android:id="@+id/tabToday"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onTabClicked"
+                    android:layout_height="52dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ivToday"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
-                    android:text="今天"
-                    android:textColor="@drawable/selector_tabbar_text"
-                    android:textSize="11sp" />
+                    <ImageView
+                        android:id="@+id/ivToday"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/selector_tabbat_today"
+                        android:scaleType="fitXY"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
 
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_alignRight="@+id/ivToday"
-                    android:layout_alignTop="@+id/ivToday"
-                    android:background="@drawable/unread_circle"
-                    android:gravity="center"
-                    android:visibility="invisible" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivToday"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:text="今天"
+                        android:textColor="@drawable/selector_tabbar_text"
+                        android:textSize="11sp" />
 
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignRight="@+id/ivToday"
+                        android:layout_alignTop="@+id/ivToday"
+                        android:background="@drawable/unread_circle"
+                        android:gravity="center"
+                        android:visibility="invisible" />
 
-            <RelativeLayout
-                android:id="@+id/tabTomorrow"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onTabClicked"
-                android:layout_height="52dp">
+                </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/ivTomorrow"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/selector_tabbar_tomorrow"
-                    android:scaleType="fitXY"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
+                <RelativeLayout
+                    android:id="@+id/tabTomorrow"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onTabClicked"
+                    android:layout_height="52dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/ivTomorrow"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
-                    android:text="明天"
-                    android:textColor="@drawable/selector_tabbar_text"
-                    android:textSize="11sp" />
+                    <ImageView
+                        android:id="@+id/ivTomorrow"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/selector_tabbar_tomorrow"
+                        android:scaleType="fitXY"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
 
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_alignRight="@id/ivTomorrow"
-                    android:layout_alignTop="@id/ivTomorrow"
-                    android:background="@drawable/unread_circle"
-                    android:gravity="center"
-                    android:visibility="invisible" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ivTomorrow"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:text="明天"
+                        android:textColor="@drawable/selector_tabbar_text"
+                        android:textSize="11sp" />
 
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignRight="@id/ivTomorrow"
+                        android:layout_alignTop="@id/ivTomorrow"
+                        android:background="@drawable/unread_circle"
+                        android:gravity="center"
+                        android:visibility="invisible" />
 
-            <RelativeLayout
-                android:id="@+id/tabErke"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onTabClicked"
-                android:layout_height="52dp">
+                </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/ivErke"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/selector_tabbar_erke"
-                    android:scaleType="fitXY"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
+                <RelativeLayout
+                    android:id="@+id/tabErke"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onTabClicked"
+                    android:layout_height="52dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/ivErke"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
-                    android:text="二珂"
-                    android:textColor="@drawable/selector_tabbar_text"
-                    android:textSize="11sp" />
+                    <ImageView
+                        android:id="@+id/ivErke"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/selector_tabbar_erke"
+                        android:scaleType="fitXY"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
 
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_alignRight="@id/ivErke"
-                    android:layout_alignTop="@id/ivErke"
-                    android:background="@drawable/unread_circle"
-                    android:gravity="center"
-                    android:visibility="invisible" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ivErke"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:text="二珂"
+                        android:textColor="@drawable/selector_tabbar_text"
+                        android:textSize="11sp" />
 
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignRight="@id/ivErke"
+                        android:layout_alignTop="@id/ivErke"
+                        android:background="@drawable/unread_circle"
+                        android:gravity="center"
+                        android:visibility="invisible" />
+
+                </RelativeLayout>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <ImageView
-            android:background="@color/gray_five"
-            android:layout_width="match_parent"
-            android:layout_height="1px" />
+            <ImageView
+                android:background="@color/gray_five"
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-</RelativeLayout>
+    <!-- The navigation drawer -->
+    <ListView
+        android:id="@+id/navdrawer"
+        android:layout_width="@dimen/navdrawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/white"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:drawSelectorOnTop="false">
+    </ListView>
+
+</android.support.v4.widget.DrawerLayout>
+

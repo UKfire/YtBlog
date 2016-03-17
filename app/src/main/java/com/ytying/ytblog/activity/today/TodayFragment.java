@@ -1,15 +1,18 @@
 package com.ytying.ytblog.activity.today;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
+import com.ytying.ytblog.act.design.Act_Write_Design;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.act.widget.KeListView;
+import com.ytying.ytblog.activity.main.MainActivity;
 import com.ytying.ytblog.base.BaseFragment;
 
 /**
@@ -20,6 +23,9 @@ public class TodayFragment extends BaseFragment implements IView {
     Presenter presenter;
     ActionBarLayout actionbar;
     KeListView listview;
+    TodayAdapter adapter;
+    int perpage = 10;
+    int page = 1;
 
     @Nullable
     @Override
@@ -28,6 +34,7 @@ public class TodayFragment extends BaseFragment implements IView {
         View v = inflater.inflate(R.layout.fgm_today, container, false);
         actionbar = (ActionBarLayout) v.findViewById(R.id.today_actionbar);
         listview = (KeListView) v.findViewById(R.id.today_listview);
+        listview.setDivider(null);
         return v;
     }
 
@@ -35,40 +42,73 @@ public class TodayFragment extends BaseFragment implements IView {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         actionbar.setTitle("慧装修");
+        actionbar.addOperateButton(R.mipmap.nav_icon_menu, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MainActivity.mDrawerLayout.isDrawerOpen(MainActivity.mDrawerList)) {
+                    MainActivity.mDrawerLayout.closeDrawer(MainActivity.mDrawerList);
+                } else {
+                    MainActivity.mDrawerLayout.openDrawer(MainActivity.mDrawerList);
+                }
+            }
+        }, true);
+
+        if (MyUser.getSelf().getDesigner() != 0) {
+            actionbar.addOperateButton(R.mipmap.nav_icon_edit, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = Act_Write_Design.createIntent(getActivity(), 1);
+                    getActivity().startActivity(intent);
+                }
+            }, false);
+        }
 
         presenter.initList();
 
-        final TodayAdapter adapter = new TodayAdapter(getActivity(), presenter.getList());
+        adapter = new TodayAdapter(getActivity(), presenter.getList());
 
         listview.setAdapter(adapter);
 
         listview.setOnRefreshListener(new KeListView.RefreshListener() {
             @Override
             public void onRefresh() {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        presenter.runRefresh();
-                        adapter.notifyDataSetChanged();
-                        listview.onRefreshComplete();
-                    }
-                }, 2000);
-
+                presenter.runRefresh(perpage, page);
             }
 
             @Override
             public void onLoad() {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        presenter.runLoad();
-                        adapter.notifyDataSetChanged();
-                        listview.onLoadComplete();
-                    }
-                }, 2000);
+                presenter.runLoad(perpage, page);
             }
         });
+
+        if (presenter.getList().size() == 0)
+            presenter.runRefresh(10, 1);
+
+    }
+
+    @Override
+    public void onRefreshComplete() {
+        listview.onRefreshComplete();
+    }
+
+    @Override
+    public void onLoadComplete() {
+        listview.onLoadComplete();
+    }
+
+    @Override
+    public void notifyDataChange() {
+        if (adapter != null)
+            adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addPage() {
+        page += 1;
+    }
+
+    @Override
+    public void clearPage() {
+        page = 1;
     }
 }

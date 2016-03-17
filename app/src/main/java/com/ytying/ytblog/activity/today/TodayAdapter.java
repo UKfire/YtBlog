@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
+
+import com.ytying.ytblog.activity.today.item.Item_Design;
+import com.ytying.ytblog.model.Design;
 
 import java.util.List;
 
@@ -14,9 +16,9 @@ import java.util.List;
 public class TodayAdapter extends BaseAdapter {
 
     Context context;
-    List<Integer> list;
+    List<Design> list;
 
-    public TodayAdapter(Context context, List<Integer> list) {
+    public TodayAdapter(Context context, List<Design> list) {
         this.context = context;
         this.list = list;
     }
@@ -38,8 +40,11 @@ public class TodayAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView textView = new TextView(context);
-        textView.setText(list.get(position) + "我爱你");
-        return textView;
+        if (convertView == null && !(convertView instanceof Item_Design)) {
+            Item_Design item = new Item_Design(context);
+            convertView = item;
+        }
+        ((Item_Design) convertView).updateUI(list.get(position));
+        return convertView;
     }
 }

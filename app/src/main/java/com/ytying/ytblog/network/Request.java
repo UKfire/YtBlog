@@ -1,5 +1,6 @@
 package com.ytying.ytblog.network;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -20,6 +21,7 @@ public class Request {
     public Request(String url, String file) {
         this.url = url;
         this.file = file;
+        this.map = new HashMap<String, String>();
     }
 
     public Map<String, String> getMap() {

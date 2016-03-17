@@ -41,4 +41,5 @@ dependencies {
     compile files('libs/photolibrary.jar')
     compile files('libs/universalimageloaderlibrary.jar')
     compile project(':multi-image-selector')
+    compile files('libs/square-otto-1.3.2.jar')
 }

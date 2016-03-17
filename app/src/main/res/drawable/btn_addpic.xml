@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@mipmap/icon_addpic_pressed" android:state_pressed="true"></item>
+    <item android:drawable="@mipmap/icon_addpic_normal" android:state_pressed="false"></item>
+
+</selector>
