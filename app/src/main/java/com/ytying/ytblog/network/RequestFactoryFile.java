@@ -5,7 +5,7 @@ package com.ytying.ytblog.network;
  */
 public class RequestFactoryFile {
 
-    private static final String ROOT_URL = "http://172.19.142.128:8000/hzx/";
+    private static final String ROOT_URL = "http://172.19.199.205/hzx/";
 
     private static final String UPLOAD_HEADIMAGE = "headImage/";
     private static final String ADDDESIGN = "addDesign/";

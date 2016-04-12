@@ -3,16 +3,13 @@ package com.ytying.ytblog.act.design;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.AppCompatEditText;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.act.widget.ChoosedPicBox;
@@ -20,10 +17,6 @@ import com.ytying.ytblog.base.BaseActivity;
 import com.ytying.ytblog.component.choosephoto.Act_PicPreview;
 import com.ytying.ytblog.component.choosephoto.PicBoxAdpter;
 import com.ytying.ytblog.component.emotion.SmileLayout;
-import com.ytying.ytblog.network.CallBack;
-import com.ytying.ytblog.network.Network;
-import com.ytying.ytblog.network.RequestFactory;
-import com.ytying.ytblog.network.Response;
 import com.ytying.ytblog.utils.DimenUtil;
 
 import java.util.ArrayList;
@@ -149,65 +142,7 @@ public class Act_Write_Design extends BaseActivity {
      * 发设计稿
      */
     private void sendDesign() {
-        showLoading("正在发表请稍后");
-        Network.post(RequestFactory.AddDesignAndroid(MyUser.loadUid(), editText.getText().toString()), new Handler(), new CallBack() {
-            @Override
-            public void onCommon(Response response) {
-                stopLoading();
-            }
 
-            @Override
-            public void onError(Response response) {
-                showToast("发表失败");
-            }
-
-            @Override
-            public void onSuccess(Response response) {
-                int id = Integer.valueOf(response.getDataString());
-                Log.v("gggg", id + "=id");
-                if (pathList.size() > 0) {
-                    showLoading("正在发表请稍后");
-                    Network.addDesignImageAndroid(id, pathList, new Handler(), new CallBack() {
-                        @Override
-                        public void onCommon(Response response) {
-                            stopLoading();
-                        }
-
-                        @Override
-                        public void onError(Response response) {
-                            showToast("发表失败");
-                        }
-
-                        @Override
-                        public void onSuccess(Response response) {
-                            showToast("发表成功");
-                        }
-                    });
-                }else{
-                    showToast("发表成功");
-                }
-            }
-        });
-    }
-
-
-    private void sendD(){
-        Network.addDesignImageAndroid(55, pathList, new Handler(), new CallBack() {
-            @Override
-            public void onCommon(Response response) {
-                stopLoading();
-            }
-
-            @Override
-            public void onError(Response response) {
-                showToast("发表失败");
-            }
-
-            @Override
-            public void onSuccess(Response response) {
-                showToast("发表成功");
-            }
-        });
     }
 
     /**

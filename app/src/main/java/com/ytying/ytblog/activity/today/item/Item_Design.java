@@ -16,19 +16,17 @@ import com.ytying.ytblog.utils.ImageLoaderUtil;
  */
 public class Item_Design extends FrameLayout {
 
-    private ImageView bigImage, headView, sex, ivLike, ivZan;
-    private TextView name, city;
+    private ImageView bigImage, headView, ivLike, ivZan;
+    private TextView name;
 
     public Item_Design(Context context) {
         super(context);
         inflate(getContext(), R.layout.item_design, this);
         bigImage = (ImageView) findViewById(R.id.design_bigImage);
         headView = (ImageView) findViewById(R.id.design_headview);
-        sex = (ImageView) findViewById(R.id.design_sex);
         ivLike = (ImageView) findViewById(R.id.ivLike);
         ivZan = (ImageView) findViewById(R.id.ivZan);
         name = (TextView) findViewById(R.id.design_name);
-        city = (TextView) findViewById(R.id.design_city);
 
         ivZan.setOnClickListener(onZanClickListner);
     }
@@ -41,15 +39,7 @@ public class Item_Design extends FrameLayout {
             bigImage.setImageResource(R.color.gray_four);
         }
         ImageLoaderUtil.getImageLoader(getContext()).displayImage(user.getHeadImage(), headView, ImageLoaderUtil.getDioOtherRound());
-        if (user.getSex().equals("male"))
-            sex.setImageResource(R.mipmap.new_icon_boy);
-        else
-            sex.setImageResource(R.mipmap.new_icon_girl);
-        name.setText(user.getNickname());
-        if (user.getCity().equals(""))
-            city.setText("所在城市：未知");
-        else
-            city.setText("所在城市：" + user.getCity());
+        name.setText(user.getName());
     }
 
 

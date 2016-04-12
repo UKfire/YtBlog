@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.act.design.Act_Write_Design;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
@@ -53,15 +52,13 @@ public class TodayFragment extends BaseFragment implements IView {
             }
         }, true);
 
-        if (MyUser.getSelf().getDesigner() != 0) {
-            actionbar.addOperateButton(R.mipmap.nav_icon_edit, new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = Act_Write_Design.createIntent(getActivity(), 1);
-                    getActivity().startActivity(intent);
-                }
-            }, false);
-        }
+        actionbar.addOperateButton(R.mipmap.nav_icon_edit, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = Act_Write_Design.createIntent(getActivity(), 1);
+                getActivity().startActivity(intent);
+            }
+        }, false);
 
         presenter.initList();
 

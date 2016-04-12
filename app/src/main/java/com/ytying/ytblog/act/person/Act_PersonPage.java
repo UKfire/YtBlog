@@ -44,8 +44,6 @@ public class Act_PersonPage extends BaseActivity {
     private ImageView headImage;
     private ImageView background;
     private TextView nickname;
-    private ImageView sex;
-    private TextView motto;
     private ListView listView;
 
     private ArrayList<String> pathList = new ArrayList<>();
@@ -72,8 +70,6 @@ public class Act_PersonPage extends BaseActivity {
         headImage = (ImageView) findViewById(R.id.headImage);
         background = (ImageView) findViewById(R.id.background);
         nickname = (TextView) findViewById(R.id.nickname);
-        sex = (ImageView) findViewById(R.id.sex);
-        motto = (TextView) findViewById(R.id.motto);
         listView = (ListView) findViewById(R.id.listview);
 
         actionbar.setTitle("个人主页");
@@ -96,17 +92,12 @@ public class Act_PersonPage extends BaseActivity {
     private void updateUI(User user) {
         ImageLoaderUtil.getImageLoader(this).displayImage(user.getHeadImage(), headImage, ImageLoaderUtil.getDioRound());
         ImageLoaderUtil.getImageLoader(this).displayImage(user.getBackImage(), background, ImageLoaderUtil.getDioSquare());
-        nickname.setText(user.getNickname());
-        if (user.getSex().equals("male"))
-            sex.setImageResource(R.mipmap.new_icon_boy);
-        else
-            sex.setImageResource(R.mipmap.new_icon_girl);
-        motto.setText(user.getMotto());
+        nickname.setText(user.getName());
     }
 
     private void Refresh() {
         showLoading("正在加载个人信息");
-        Network.post(RequestFactory.GetDetailUser(user.getFunId()), new Handler(), new CallBack() {
+        Network.post(RequestFactory.GetUserDetail(user.getFunId()), new Handler(), new CallBack() {
             @Override
             public void onCommon(Response response) {
                 stopLoading();

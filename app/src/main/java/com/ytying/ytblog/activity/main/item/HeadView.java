@@ -32,16 +32,7 @@ public class HeadView extends FrameLayout {
     }
 
     public void updateUI(final User user) {
-        motto.setText(user.getMotto());
-        name.setText(user.getNickname());
-        if (user.getSex().equals("male"))
-            sex.setImageResource(R.mipmap.new_icon_boy);
-        else
-            sex.setImageResource(R.mipmap.new_icon_girl);
-        if (user.getMotto().equals(""))
-            motto.setText("每个人都有梦想，而我只想要你");
-        else
-            motto.setText(user.getMotto());
+        name.setText(user.getName());
         ImageLoaderUtil.getImageLoader(getContext()).displayImage(user.getHeadImage(), head, ImageLoaderUtil.getDioRound());
         ImageLoaderUtil.getImageLoader(getContext()).displayImage(user.getBackImage(), background, ImageLoaderUtil.getDioSquare());
         head.setOnClickListener(new OnClickListener() {

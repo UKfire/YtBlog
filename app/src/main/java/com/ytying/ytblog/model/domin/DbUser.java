@@ -1,7 +1,6 @@
 package com.ytying.ytblog.model.domin;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.ytying.ytblog.F;
 import com.ytying.ytblog.YtApp;
@@ -69,7 +68,6 @@ public class DbUser {
                     try {
                         User person = list.get(i);
                         userDao.insertOrReplace(person);
-                        Log.v(i + "_" + person.getNickname(), "ppppp");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

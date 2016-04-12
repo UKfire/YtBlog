@@ -15,16 +15,8 @@ public class MyDaoGenerator {
     private static void addUser(Schema schema) {
         Entity user = schema.addEntity("User");
         user.addStringProperty("funId").primaryKey();
-        user.addStringProperty("email");
-        user.addStringProperty("nickname");
-        user.addStringProperty("createTime");
-        user.addIntProperty("designer");
-        user.addStringProperty("sex");
-        user.addStringProperty("phoneNumber");
-        user.addStringProperty("qqNumber");
-        user.addStringProperty("motto");
-        user.addStringProperty("province");
-        user.addStringProperty("city");
+        user.addStringProperty("name");
+        user.addStringProperty("phone");
         user.addStringProperty("headImage");
         user.addStringProperty("backImage");
     }

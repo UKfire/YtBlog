@@ -94,7 +94,7 @@
         android:textSize="16sp" />
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/email_register"
+        android:id="@+id/phone_register"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
@@ -102,37 +102,14 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-
         android:background="@drawable/textfield_gray_light"
-        android:hint="请输入邮箱"
+        android:hint="请输入电话"
         android:paddingLeft="12dp"
         android:singleLine="true"
         android:textColor="@color/zd_black"
         android:textColorHint="@color/fzd_grey"
         android:textCursorDrawable="@null"
         android:textSize="16sp" />
-
-    <RadioGroup
-        android:id="@+id/sex_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="男" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:text="女" />
-
-    </RadioGroup>
-
 
     <Button
         android:id="@+id/register"
