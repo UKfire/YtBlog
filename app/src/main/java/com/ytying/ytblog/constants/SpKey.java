@@ -6,7 +6,9 @@ package com.ytying.ytblog.constants;
 public enum SpKey {
 
     USER_FUNID("USER_FUNID","user"),
-    DESIGN_LIST("DESIGN_LIST", "user");
+    DESIGN_LIST("DESIGN_LIST", "user"),
+    MY_INFO("MY_INFO","user"),
+    MY_LOGININFO("MY_LOGININFO","user");
 
     private String key;
     private String type;

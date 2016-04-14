@@ -8,6 +8,8 @@ import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.act.login.Act_Login;
 import com.ytying.ytblog.activity.main.MainActivity;
+import com.ytying.ytblog.constants.SpKey;
+import com.ytying.ytblog.utils.SpUtil;
 import com.ytying.ytblog.utils.ThreadUtil;
 
 /**
@@ -29,7 +31,7 @@ public class Act_Entrance extends Activity {
                     e.printStackTrace();
                 }
 
-                if (!MyUser.loadUid().equals("")) {
+                if (!MyUser.loadUid().equals("") && !SpUtil.loadString(SpKey.MY_INFO).equals("")) {
                     gotoMain();
                 } else {
                     gotoLogin();

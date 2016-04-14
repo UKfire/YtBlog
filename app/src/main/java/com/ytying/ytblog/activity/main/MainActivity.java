@@ -61,6 +61,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mainActivity = this;
         initUI();
+
     }
 
     private void initUI() {
