@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/selector_white_2pctblack"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:id="@+id/ivDivide"
+        android:background="@color/fzd_grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <ImageView
+        android:id="@+id/ivHead"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp" />
+
+
+    <TextView
+        android:id="@+id/tvUnread"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignBottom="@+id/ivHead"
+        android:layout_alignRight="@+id/ivHead"
+        android:background="@drawable/unread_circle"
+        android:gravity="center"
+        android:text="7"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginLeft="14dp"
+        android:gravity="center"
+        android:layout_marginTop="6dp"
+        android:layout_toRightOf="@+id/ivHead"
+        android:text="未知"
+        android:textColor="@color/gray_one"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="16dp"
+        android:layout_toRightOf="@+id/ivHead"
+        android:gravity="center_vertical">
+
+
+        <ImageView
+            android:id="@+id/ivState"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/msg_state_fail_resend" />
+
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="xxxxxxx"
+            android:textColor="@color/zd_gery"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="11:10"
+        android:textColor="@color/gray_five"
+        android:textSize="12sp" />
+
+</RelativeLayout>

@@ -69,6 +69,8 @@
     <color name="alpha_87_white">#deffffff</color>
     <color name="alpha_zd_grey">#85000000</color>
     <color name="alpha_blue">#8573c7ea</color>
+    <color name="alpha_2pct_black">#05000000</color>
+
 
 
     <color name="popup_frombottom_selftransparent">#99000000</color>

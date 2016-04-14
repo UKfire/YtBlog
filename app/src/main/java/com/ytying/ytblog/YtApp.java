@@ -40,6 +40,7 @@ public class YtApp extends Application {
     public void onCreate() {
         super.onCreate();
         F.AppContext = getApplicationContext();
+        NIMClient.init(this, loginInfo(), options());
     }
 
     private SDKOptions options() {
@@ -102,11 +103,11 @@ public class YtApp extends Application {
         String info = SpUtil.loadString(SpKey.MY_LOGININFO);
         if (s.equals("") || info.equals(""))
             return null;
-        else{
+        else {
             JSONObject jsonObject = JsonUtil.string2JsonObject(s);
             String funId = jsonObject.getString("funId");
             String password = jsonObject.getString("password");
-            LoginInfo loginInfo = JsonUtil.Json2T(info, LoginInfo.class, new LoginInfo(funId,password));
+            LoginInfo loginInfo = JsonUtil.Json2T(info, LoginInfo.class, new LoginInfo(funId, password));
             return loginInfo;
         }
     }
