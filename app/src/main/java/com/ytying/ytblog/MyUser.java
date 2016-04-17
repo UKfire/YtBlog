@@ -36,6 +36,8 @@ public class MyUser {
         return SpUtil.loadString(SpKey.USER_FUNID);
     }
 
-
+    public static void clearSelf(){
+        self = null;
+    }
 
 }

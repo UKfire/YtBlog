@@ -22,6 +22,7 @@ import com.ytying.ytblog.act.login.Act_Login;
 import com.ytying.ytblog.constants.SpKey;
 import com.ytying.ytblog.model.domin.DaoMaster;
 import com.ytying.ytblog.model.domin.DaoSession;
+import com.ytying.ytblog.model.domin.DbUser;
 import com.ytying.ytblog.utils.DimenUtil;
 import com.ytying.ytblog.utils.JsonUtil;
 import com.ytying.ytblog.utils.SpUtil;
@@ -113,9 +114,15 @@ public class YtApp extends Application {
     }
 
     public static void logout(Activity act) {
-
+        //清空数据库
+        DbUser.getInstance().deleteAllUser();
+        //清除内存中self的缓存
+        MyUser.clearSelf();
+        //清除SP
         SpUtil.clearUserSp();
+        //登出云信
         NIMClient.getService(AuthService.class).logout();
+
         act.startActivity(new Intent(act, Act_Login.class));
         act.finish();
     }

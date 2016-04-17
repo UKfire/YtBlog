@@ -1,16 +1,16 @@
 package com.ytying.ytblog.act.contacts;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.ytying.ytblog.act.contacts.item.Item_PaopaoTxtLeft;
+import com.ytying.ytblog.act.contacts.item.Item_PaopaoTxtRight;
 import com.ytying.ytblog.model.domin.User;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class PaopaoAdapter extends BaseAdapter {
     private Context context;
     private List<IMMessage> msgList;
 
-    public PaopaoAdapter(Context context,List<IMMessage> msgList,User user){
+    public PaopaoAdapter(Context context, List<IMMessage> msgList, User user) {
         this.user = user;
         this.context = context;
         this.msgList = msgList;
@@ -37,7 +37,7 @@ public class PaopaoAdapter extends BaseAdapter {
 
     @Override
     public IMMessage getItem(int position) {
-        if(msgList != null && position < msgList.size())
+        if (msgList != null && position < msgList.size())
             return msgList.get(position);
         return null;
     }
@@ -53,23 +53,26 @@ public class PaopaoAdapter extends BaseAdapter {
         final IMMessage message = getItem(position);
         MsgTypeEnum type = message.getMsgType();
 
-        if(type == MsgTypeEnum.text){
+        if (type == MsgTypeEnum.text) {
             //右边,我发出去的
-            if(message.getDirect() == MsgDirectionEnum.Out){
-                TextView item  = new TextView(context);
-                item.setText(message.getContent());
-                item.setTextColor(Color.BLUE);
-                convertView = item;
+            if (message.getDirect() == MsgDirectionEnum.Out) {
+                if (convertView == null || !(convertView instanceof Item_PaopaoTxtRight)) {
+                    Item_PaopaoTxtRight item = new Item_PaopaoTxtRight(context);
+                    convertView = item;
+                }
+                ((Item_PaopaoTxtRight) convertView).updateUI(msgList, position);
             }
             //左边,我收到的
-            else if(message.getDirect() == MsgDirectionEnum.In){
-                TextView item  = new TextView(context);
-                item.setText(message.getContent());
-                convertView = item;
+            else if (message.getDirect() == MsgDirectionEnum.In) {
+                if (convertView == null || !(convertView instanceof Item_PaopaoTxtLeft)) {
+                    Item_PaopaoTxtLeft item = new Item_PaopaoTxtLeft(context);
+                    convertView = item;
+                }
+                ((Item_PaopaoTxtLeft) convertView).updateUI(msgList, position);
             }
-        }else if(type == MsgTypeEnum.audio){
+        } else if (type == MsgTypeEnum.audio) {
 
-        }else if(type == MsgTypeEnum.image){
+        } else if (type == MsgTypeEnum.image) {
 
         }
         return convertView == null ? new LinearLayout(context) : convertView;

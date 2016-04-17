@@ -110,7 +110,8 @@
         <activity android:name=".act.common.Act_PicGallery" />
         <activity android:name=".component.choosephoto.Act_PicPreview" />
         <activity android:name=".act.person.Act_EditInformation"/>
-        <activity android:name=".act.contacts.MessageActivity"/>
+        <activity android:name=".act.contacts.MessageActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
 
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"

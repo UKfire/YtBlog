@@ -13,6 +13,7 @@ import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.activity.main.MainActivity;
 import com.ytying.ytblog.base.BaseFragment;
 import com.ytying.ytblog.event.DeleteConversationEvent;
+import com.ytying.ytblog.event.UnreadCountUpdateEvent;
 
 /**
  * Created by UKfire on 15/11/22.
@@ -37,7 +38,7 @@ public class TomorrowFragment extends BaseFragment implements IView {
         super.onActivityCreated(savedInstanceState);
         YtApp.getOtto().register(this);
         presenter = new Presenter(this);
-        actionbar.setTitle("慧装修");
+        actionbar.setTitle("光影安大");
         actionbar.addOperateButton(R.mipmap.nav_icon_menu, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +60,10 @@ public class TomorrowFragment extends BaseFragment implements IView {
         presenter.refreshListView();
     }
 
+    @Subscribe
+    public void onUnreadCountUpdateEvent(UnreadCountUpdateEvent event){
+        adapter.notifyDataSetInvalidated();
+    }
 
     @Override
     public void onResume() {

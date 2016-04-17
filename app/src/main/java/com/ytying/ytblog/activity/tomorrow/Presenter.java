@@ -48,13 +48,15 @@ public class Presenter extends BasePresenter<IView> {
                         @Override
                         public void onResult(int code, List<RecentContact> recents, Throwable e) {
                             // recents参数即为最近联系人列表（最近会话列表）
-                            messages.addAll(recents);
+                            messages.clear();
+                            if (recents != null)
+                                messages.addAll(recents);
                         }
                     });
         }
     }
 
-    public List<RecentContact> getMessages(){
+    public List<RecentContact> getMessages() {
         return this.messages;
     }
 

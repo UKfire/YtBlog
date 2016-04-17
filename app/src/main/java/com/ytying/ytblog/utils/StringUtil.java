@@ -102,5 +102,14 @@ public class StringUtil {
         }
     }
 
+    /**
+     * 去除微博/评论等内容中的@标签和表情标签 保证我们的标签形式不被暴露
+     */
+    public static String removeTextTag(String input) {
+        input = input.replaceAll("\\[a=.*?\\].*?\\[\\/a\\]", "");
+        input = input.replaceAll("\\[e\\]\\d{4}\\[\\/e\\]", "");
+        return input;
+    }
+
 
 }

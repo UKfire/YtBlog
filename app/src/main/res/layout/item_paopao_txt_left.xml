@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="18dp">
+
+    <ImageView
+        android:id="@+id/ivEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="18dp" />
+
+    <TextView
+        android:id="@+id/tvTimeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="上午11:20"
+
+        android:layout_marginBottom="18dp"
+        android:textColor="#7b7b7b"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivHead"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitXY" />
+
+        <FrameLayout
+            android:id="@+id/paopaoLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="62dp"
+            android:layout_toRightOf="@id/ivHead"
+            android:background="@drawable/selector_chatroom_paopao_txt_left">
+
+            <TextView
+                android:minHeight="44dp"
+                android:id="@+id/tvContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:padding="13dp"
+                android:text="提供提供"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+
+        <ImageView
+            android:id="@+id/ivState"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/selector_chatroom_retry"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

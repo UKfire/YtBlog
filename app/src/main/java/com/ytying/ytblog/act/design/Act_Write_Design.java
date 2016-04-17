@@ -3,13 +3,16 @@ package com.ytying.ytblog.act.design;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatEditText;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.act.widget.ChoosedPicBox;
@@ -17,6 +20,11 @@ import com.ytying.ytblog.base.BaseActivity;
 import com.ytying.ytblog.component.choosephoto.Act_PicPreview;
 import com.ytying.ytblog.component.choosephoto.PicBoxAdpter;
 import com.ytying.ytblog.component.emotion.SmileLayout;
+import com.ytying.ytblog.network.CallBack;
+import com.ytying.ytblog.network.Network;
+import com.ytying.ytblog.network.RequestFactory;
+import com.ytying.ytblog.network.RequestFactoryFile;
+import com.ytying.ytblog.network.Response;
 import com.ytying.ytblog.utils.DimenUtil;
 
 import java.util.ArrayList;
@@ -38,17 +46,14 @@ public class Act_Write_Design extends BaseActivity {
 
     private ArrayList<String> pathList;
 
-    private int type;
-
-    public static Intent createIntent(Context context, int type) {
+    public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, Act_Write_Design.class);
-        intent.putExtra("type", type);
         return intent;
     }
 
     @Override
     protected void initData() {
-        type = getIntent().getIntExtra("type", 0);
+
     }
 
     @Override
@@ -63,11 +68,7 @@ public class Act_Write_Design extends BaseActivity {
         picbox = (ChoosedPicBox) findViewById(R.id.choosedPicBox);
         smileLayout = (SmileLayout) findViewById(R.id.write_smile_panel);
 
-        if (type != 0) {
-            actionbar.setTitle("秀设计稿");
-        } else {
-            actionbar.setTitle("发动态");
-        }
+        actionbar.setTitle("发动态");
 
         smileLayout.setVisibility(View.GONE);
         smileLayout.init(editText);
@@ -99,11 +100,7 @@ public class Act_Write_Design extends BaseActivity {
         actionbar.addOperateButton(R.mipmap.nav_icon_confirm, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (type != 0 && !editText.getText().toString().equals("")) {
-                    sendDesign();
-                } else if (type == 0 && editText.getText().toString().equals("")) {
-                    sendBlog();
-                }
+                sendBlog();
             }
 
         }, false);
@@ -132,17 +129,43 @@ public class Act_Write_Design extends BaseActivity {
     }
 
     /**
-     * 发生活圈
+     * 发微博
      */
     private void sendBlog() {
+        showLoading("正在发表请稍后");
+        Network.uploadFile(RequestFactoryFile.AddBlogPic(pathList.get(0), MyUser.loadUid()), new Handler(), new CallBack() {
+            @Override
+            public void onCommon(Response response) {
 
-    }
+            }
 
-    /**
-     * 发设计稿
-     */
-    private void sendDesign() {
+            @Override
+            public void onError(Response response) {
+                stopLoading();
+            }
 
+            @Override
+            public void onSuccess(Response response) {
+                Log.v("gaogaogaogfff", response.getDataString());
+                Network.post(RequestFactory.AddBlog(MyUser.loadUid(), editText.getText().toString(), response.getDataString()), new Handler(), new CallBack() {
+                    @Override
+                    public void onCommon(Response response) {
+                        stopLoading();
+                    }
+
+                    @Override
+                    public void onError(Response response) {
+                        showToast("发表失败");
+                    }
+
+                    @Override
+                    public void onSuccess(Response response) {
+                        showToast("发表成功");
+                        Act_Write_Design.this.finish();
+                    }
+                });
+            }
+        });
     }
 
     /**

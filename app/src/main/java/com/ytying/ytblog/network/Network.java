@@ -9,7 +9,6 @@ import com.ytying.ytblog.utils.JsonUtil;
 import com.ytying.ytblog.utils.NetworkUtil;
 import com.ytying.ytblog.utils.ThreadUtil;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -125,96 +124,6 @@ public class Network {
             e.printStackTrace();
             return Response.createHostError();
         }
-    }
-
-
-    /**
-     * 上传Design，因为服务端比较蠢，所以没办法延用以前的封装＝＝，西瓜是狗！
-     *
-     * @param content
-     * @param list
-     * @return
-     */
-    public static void addDesign(final String content, final List<String> list, final Handler handler, final CallBack callback) {
-
-        final String url = "http://172.19.142.128:8000/hzx/addDesign/";
-
-        ThreadUtil.execute(new Runnable() {
-            @Override
-            public void run() {
-                Response response = null;
-
-                if (NetworkUtil.CheckNetworkState() == NetworkUtil.NetState.NONE)
-                    response = Response.createOfflineError();
-                else {
-                    String json = HttpUtil.uploadDesign(url, MyUser.loadUid(), content, list);
-
-                    try {
-                        response = JSON.parseObject(json, Response.class);
-                    } catch (Exception e) {
-                        response = Response.createHostError();
-                        e.printStackTrace();
-                    }
-                    Log.d(TAG, "url==" + url);
-                    Log.d(TAG, "addDesign_result==" + json);
-                }
-                if (response == null)
-                    response = Response.createHostError();
-                final Response finalResponse = response;
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onCommon(finalResponse);
-                        if (finalResponse.isSucc())
-                            callback.onSuccess(finalResponse);
-                        else
-                            callback.onError(finalResponse);
-                    }
-                });
-
-            }
-        });
-    }
-
-    public static void addDesignImageAndroid(final int id, final List<String> list, final Handler handler, final CallBack callback) {
-
-        final String url = "http://172.19.142.128:8000/hzx/addDesignImageAndroid/";
-
-        ThreadUtil.execute(new Runnable() {
-            @Override
-            public void run() {
-                Response response = null;
-
-                if (NetworkUtil.CheckNetworkState() == NetworkUtil.NetState.NONE)
-                    response = Response.createOfflineError();
-                else {
-                    String json = HttpUtil.uploadDesignImageAndroid(url, id, list);
-
-                    try {
-                        response = JSON.parseObject(json, Response.class);
-                    } catch (Exception e) {
-                        response = Response.createHostError();
-                        e.printStackTrace();
-                    }
-                    Log.d(TAG, "url==" + url);
-                    Log.d(TAG, "addDesignImageAndroid_result==" + json);
-                }
-                if (response == null)
-                    response = Response.createHostError();
-                final Response finalResponse = response;
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onCommon(finalResponse);
-                        if (finalResponse.isSucc())
-                            callback.onSuccess(finalResponse);
-                        else
-                            callback.onError(finalResponse);
-                    }
-                });
-
-            }
-        });
     }
 
 

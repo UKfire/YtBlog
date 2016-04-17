@@ -7,15 +7,20 @@ import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.QueryDirectionEnum;
+import com.ytying.ytblog.YtApp;
 import com.ytying.ytblog.base.BasePresenter;
 import com.ytying.ytblog.constants.GSession;
+import com.ytying.ytblog.event.ResendMessageEvent;
+import com.ytying.ytblog.event.UnreadCountUpdateEvent;
 import com.ytying.ytblog.model.domin.User;
 import com.ytying.ytblog.network.Response;
 import com.ytying.ytblog.service.UserGetMagic;
 import com.ytying.ytblog.service.UserGetThread;
+import com.ytying.ytblog.utils.SoundUtil;
 import com.ytying.ytblog.utils.ThreadUtil;
 
 import java.util.ArrayList;
@@ -32,6 +37,8 @@ public class Presenter extends BasePresenter<IView> {
 
     public User objUser;
     private IMMessage anchor;
+    //下拉刷新记录位置用
+    int position = 0;
     public List<IMMessage> msgList = new ArrayList<>();
 
     private Handler handler = new Handler();
@@ -64,18 +71,20 @@ public class Presenter extends BasePresenter<IView> {
             e.printStackTrace();
             getView().finish();
         }
+        NIMClient.getService(MsgService.class).setChattingAccount(objId, SessionTypeEnum.P2P);
     }
 
     public void onCreate() {
         if (objUser.getName().length() == 0) {
             UserGetMagic.callTask(objId, new UserGetThread.UpdateUIListener() {
                 @Override
-                public void onSuccess(User user) {
+                public void onSuccess(final User user) {
                     objUser.setUser(user);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
                             getView().notifyDataChanged();
+                            getView().setActionBar(user);
                         }
                     });
                 }
@@ -89,9 +98,11 @@ public class Presenter extends BasePresenter<IView> {
     }
 
 
-    public void loadBackMessage() {
+    public int loadBackMessage() {
+        YtApp.getOtto().post(new UnreadCountUpdateEvent());
         anchor = anchor == null ? MessageBuilder.createEmptyMessage(objId, SessionTypeEnum.P2P, System.currentTimeMillis()) : anchor;
         loadFormLocal();
+        return position;
     }
 
     private void loadFormLocal() {
@@ -99,22 +110,23 @@ public class Presenter extends BasePresenter<IView> {
                 .setCallback(new RequestCallback<List<IMMessage>>() {
                     @Override
                     public void onSuccess(List<IMMessage> imMessages) {
+                        List<IMMessage> results = new ArrayList<>();
                         if (imMessages.size() > 0)
                             anchor = imMessages.get(0);
                         if (msgList.size() == 0)
                             msgList.addAll(imMessages);
                         else {
-                            List<IMMessage> results = new ArrayList<>();
                             results.addAll(msgList);
                             msgList.clear();
                             msgList.addAll(imMessages);
                             msgList.addAll(results);
                         }
+                        position = msgList.size() - results.size();
                     }
 
                     @Override
                     public void onFailed(int i) {
-
+                        position = 0;
                     }
 
                     @Override
@@ -131,7 +143,15 @@ public class Presenter extends BasePresenter<IView> {
         msgList.add(message);
         getView().clearEditText();
         refreshListView(false, -2);
+        SoundUtil.play();
+    }
 
+    public void resendMessage(ResendMessageEvent event) {
+        IMMessage msg = null;
+        msg = msgList.get(event.getPosition());
+        msg.setStatus(MsgStatusEnum.sending);
+        getView().notifyDataChanged();
+        SoundUtil.play();
     }
 
     public void refreshListView(final boolean regetData, final int scrollPosition) {

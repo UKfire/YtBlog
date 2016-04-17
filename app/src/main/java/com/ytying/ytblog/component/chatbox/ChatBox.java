@@ -12,7 +12,9 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.ytying.ytblog.R;
+import com.ytying.ytblog.YtApp;
 import com.ytying.ytblog.component.emotion.SmileLayout;
+import com.ytying.ytblog.event.KeyEmotionBoardPopupEvent;
 
 import java.util.List;
 
@@ -112,6 +114,7 @@ public class ChatBox extends FrameLayout implements View.OnClickListener {
                 break;
             case R.id.newChatBox_Button:
                 callback.onSend(edittext.getText().toString());
+                YtApp.getOtto().post(new KeyEmotionBoardPopupEvent());
                 break;
             default:
                 break;

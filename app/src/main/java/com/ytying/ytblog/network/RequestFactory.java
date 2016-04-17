@@ -49,7 +49,7 @@ public class RequestFactory {
                 .add("funId", funId + "")
                 .add("password", password + "")
                 .add("name", nickname + "")
-                .add("phone", phone+ "");
+                .add("phone", phone + "");
     }
 
     public static Request GetUserDetail(String funId) {
@@ -58,4 +58,22 @@ public class RequestFactory {
     }
 
 
+    //Blog
+    public static Request AddBlog(String funId, String content, String image) {
+        return createRequest(AddBlog)
+                .add("funId", funId + "")
+                .add("content", content + "")
+                .add("image", image + "");
+    }
+
+    public static Request GetBlogList(String lastId, int count) {
+        return createRequest(GetBlogList)
+                .add("lastId", lastId + "")
+                .add("count", count + "");
+    }
+
+    public static Request GetUserBlogList(String funId) {
+        return createRequest(GetUserBlogList)
+                .add("funId", funId + "");
+    }
 }

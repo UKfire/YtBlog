@@ -7,15 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
-import com.ytying.ytblog.act.contacts.InterChat;
-import com.ytying.ytblog.act.contacts.MessageActivity;
+import com.ytying.ytblog.act.design.Act_Write_Design;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.act.widget.KeListView;
 import com.ytying.ytblog.activity.main.MainActivity;
 import com.ytying.ytblog.base.BaseFragment;
-import com.ytying.ytblog.constants.GSession;
 
 /**
  * Created by UKfire on 15/11/22.
@@ -43,7 +40,7 @@ public class TodayFragment extends BaseFragment implements IView {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        actionbar.setTitle("慧装修");
+        actionbar.setTitle("光影安大");
         actionbar.addOperateButton(R.mipmap.nav_icon_menu, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,14 +55,7 @@ public class TodayFragment extends BaseFragment implements IView {
         actionbar.addOperateButton(R.mipmap.nav_icon_edit, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = Act_Write_Design.createIntent(getActivity(), 1);
-//                getActivity().startActivity(intent);
-                if(MyUser.loadUid().equals("111")){
-                    GSession.getSession().putInterChat(new InterChat("222"));
-                }else{
-                    GSession.getSession().putInterChat(new InterChat("111"));
-                }
-                Intent intent = new Intent(getActivity(), MessageActivity.class);
+                Intent intent = Act_Write_Design.createIntent(getActivity());
                 getActivity().startActivity(intent);
             }
         }, false);

@@ -5,11 +5,13 @@ package com.ytying.ytblog.network;
  */
 public class RequestFactoryFile {
 
-    private static final String ROOT_URL = "http://172.19.199.205/hzx/";
+    private static final String ROOT_URL = "http://172.19.199.205:1234/";
 
     private static final String UPLOAD_HEADIMAGE = "headImage/";
     private static final String ADDDESIGN = "addDesign/";
     private static final String ADDDESIGNIMAGEANDROID = "addDesignImageAndroid/";
+
+    private static final String ADDBLOG_PIC = "addBlogPic/";
 
     public static Request UploadObject(String url, String file) {
         return new Request(ROOT_URL + url, file);
@@ -19,9 +21,8 @@ public class RequestFactoryFile {
         return UploadObject(UPLOAD_HEADIMAGE, file);
     }
 
-    public static Request AddDesign(String file, String content) {
-        return new Request(ROOT_URL + ADDDESIGN, file)
-                .add("content", content);
+    public static Request AddBlogPic(String file,String funId){
+        return new Request(ROOT_URL + ADDBLOG_PIC,file)
+                .add("funId",funId);
     }
-
 }
