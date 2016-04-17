@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/white"></FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/newChatBox_EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_newchatbox_edittext"
+            android:maxLines="4"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@null" />
+
+        <Button
+            android:id="@+id/newChatBox_Button"
+            android:layout_width="56dp"
+            android:layout_height="35dp"
+            android:background="@drawable/btn_common_newchatbox_blue"
+            android:text="发送"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/chatbox_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_newchatbox_voice" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/chatbox_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_newchatbox_camera" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/chatbox_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_newchatbox_image" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/chatbox_emoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_newchatbox_emoji" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <com.ytying.ytblog.component.chatbox.VoicePanel
+            android:id="@+id/voice_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+        </com.ytying.ytblog.component.chatbox.VoicePanel>
+
+        <com.ytying.ytblog.component.chatbox.ImagePanel
+            android:id="@+id/image_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+        </com.ytying.ytblog.component.chatbox.ImagePanel>
+
+        <com.ytying.ytblog.component.emotion.SmileLayout
+            android:id="@+id/smile_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+        </com.ytying.ytblog.component.emotion.SmileLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

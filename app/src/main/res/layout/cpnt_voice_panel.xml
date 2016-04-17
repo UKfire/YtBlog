@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="164dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="按住说话"
+        android:textColor="@color/gray_two"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/btRecord"
+        android:layout_width="93dp"
+        android:layout_height="93dp"
+        android:layout_below="@+id/tvTime"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_editdynamic_recordbutton"
+        android:textColor="@color/gray_two"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/voice_cancel"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/selector_editdynamic_recordbutton_cancel"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/gray_four"
+        android:textSize="12sp"
+        android:textStyle="normal" />
+
+
+</RelativeLayout>

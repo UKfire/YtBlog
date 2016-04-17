@@ -1,0 +1,12 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/button_blue_clicked" android:state_pressed="true"></item>
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/gray_four" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/button_blue_normal" android:state_pressed="false"></item>
+
+</selector>

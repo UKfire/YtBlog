@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ytying.ytblog.act.widget.ActionBarLayout
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.ytying.ytblog.act.widget.ActionBarLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/actionbar"
+        android:layout_above="@+id/chatbox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.ytying.ytblog.component.pull2refresh.PullToRefreshListView
+            android:id="@+id/lvPaopao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:divider="@null"
+            android:listSelector="#00000000"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none"
+            android:transcriptMode="alwaysScroll" />
+
+    </RelativeLayout>
+
+    <com.ytying.ytblog.component.chatbox.ChatBox
+        android:id="@+id/chatbox"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.ytying.ytblog.component.chatbox.ChatBox>
+
+</RelativeLayout>

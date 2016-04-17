@@ -7,4 +7,6 @@ import com.ytying.ytblog.base.BaseIView;
  */
 public interface IView extends BaseIView{
 
+    void notifyDataChanged();
+
 }
