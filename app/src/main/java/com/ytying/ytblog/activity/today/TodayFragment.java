@@ -6,13 +6,15 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.act.design.Act_Write_Design;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
-import com.ytying.ytblog.act.widget.KeListView;
 import com.ytying.ytblog.activity.main.MainActivity;
 import com.ytying.ytblog.base.BaseFragment;
+import com.ytying.ytblog.component.pull2refresh.PullToRefreshBase;
+import com.ytying.ytblog.component.pull2refresh.PullToRefreshListView;
 
 /**
  * Created by UKfire on 15/11/22.
@@ -21,10 +23,9 @@ public class TodayFragment extends BaseFragment implements IView {
 
     Presenter presenter;
     ActionBarLayout actionbar;
-    KeListView listview;
+    PullToRefreshListView listview;
     TodayAdapter adapter;
-    int perpage = 10;
-    int page = 1;
+    String lastId = "0";
 
     @Nullable
     @Override
@@ -32,8 +33,8 @@ public class TodayFragment extends BaseFragment implements IView {
         presenter = new Presenter(this);
         View v = inflater.inflate(R.layout.fgm_today, container, false);
         actionbar = (ActionBarLayout) v.findViewById(R.id.today_actionbar);
-        listview = (KeListView) v.findViewById(R.id.today_listview);
-        listview.setDivider(null);
+        listview = (PullToRefreshListView) v.findViewById(R.id.today_listview);
+        listview.getRefreshableView().setDivider(null);
         return v;
     }
 
@@ -64,33 +65,32 @@ public class TodayFragment extends BaseFragment implements IView {
 
         adapter = new TodayAdapter(getActivity(), presenter.getList());
 
-        listview.setAdapter(adapter);
+        listview.getRefreshableView().setAdapter(adapter);
 
-        listview.setOnRefreshListener(new KeListView.RefreshListener() {
+        listview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
-            public void onRefresh() {
-                presenter.runRefresh(perpage, page);
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                presenter.runRefresh("0");
             }
 
             @Override
-            public void onLoad() {
-                presenter.runLoad(perpage, page);
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                presenter.runRefresh(lastId);
             }
         });
 
-        if (presenter.getList().size() == 0)
-            presenter.runRefresh(10, 1);
+        listview.doPullRefreshing(true, 300);
 
     }
 
     @Override
-    public void onRefreshComplete() {
-        listview.onRefreshComplete();
+    public void onRefreshDownComplete() {
+        listview.onPullDownRefreshComplete();
     }
 
     @Override
-    public void onLoadComplete() {
-        listview.onLoadComplete();
+    public void onRefreshUpComplete() {
+        listview.onPullUpRefreshComplete();
     }
 
     @Override
@@ -100,12 +100,8 @@ public class TodayFragment extends BaseFragment implements IView {
     }
 
     @Override
-    public void addPage() {
-        page += 1;
+    public void setLastId(String lastId) {
+        this.lastId = lastId;
     }
 
-    @Override
-    public void clearPage() {
-        page = 1;
-    }
 }

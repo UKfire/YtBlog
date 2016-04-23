@@ -39,7 +39,7 @@
     <application
         android:name=".YtApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/xiao_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
@@ -105,7 +105,7 @@
 
         <activity android:name=".act.login.Act_Login" />
         <activity android:name=".act.register.Act_Register" />
-        <activity android:name=".act.person.Act_PersonPage" />
+        <activity android:name=".act.person.personpage.Act_PersonPage" />
         <activity android:name=".act.design.Act_Write_Design" />
         <activity android:name=".act.common.Act_PicGallery" />
         <activity android:name=".component.choosephoto.Act_PicPreview" />

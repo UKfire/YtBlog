@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ytying.ytblog.R;
-import com.ytying.ytblog.act.person.Act_PersonPage;
+import com.ytying.ytblog.act.person.personpage.Act_PersonPage;
 import com.ytying.ytblog.model.domin.User;
 import com.ytying.ytblog.utils.ImageLoaderUtil;
 
@@ -18,16 +18,13 @@ import com.ytying.ytblog.utils.ImageLoaderUtil;
 public class HeadView extends FrameLayout {
 
     private TextView name;
-    private TextView motto;
-    private ImageView head, background, sex;
+    private ImageView head, background;
 
     public HeadView(Context context) {
         super(context);
         inflate(getContext(), R.layout.item_headview, this);
         name = (TextView) findViewById(R.id.name);
         head = (ImageView) findViewById(R.id.headview);
-        sex = (ImageView) findViewById(R.id.sex);
-        motto = (TextView) findViewById(R.id.motto);
         background = (ImageView) findViewById(R.id.backgroundImage);
     }
 

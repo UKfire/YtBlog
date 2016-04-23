@@ -1,9 +1,15 @@
 package com.ytying.ytblog.activity.today;
 
 
+import android.os.Handler;
+
 import com.ytying.ytblog.base.BasePresenter;
 import com.ytying.ytblog.constants.SpKey;
-import com.ytying.ytblog.model.Design;
+import com.ytying.ytblog.model.Blog;
+import com.ytying.ytblog.network.CallBack;
+import com.ytying.ytblog.network.Network;
+import com.ytying.ytblog.network.RequestFactory;
+import com.ytying.ytblog.network.Response;
 import com.ytying.ytblog.utils.JsonUtil;
 import com.ytying.ytblog.utils.SpUtil;
 
@@ -15,73 +21,55 @@ import java.util.List;
  */
 public class Presenter extends BasePresenter<IView> {
 
-    List<Design> list = new ArrayList<>();
+    List<Blog> list = new ArrayList<>();
 
     public Presenter(IView view) {
         super(view);
     }
 
-    public List<Design> getList() {
+    public List<Blog> getList() {
         return this.list;
     }
 
     public void initList() {
         String data = SpUtil.loadString(SpKey.DESIGN_LIST);
         if (!data.equals("")) {
-            List<Design> tempList = JsonUtil.string2List(data, Design.class);
+            List<Blog> tempList = JsonUtil.string2List(data, Blog.class);
+            list.clear();
             list.addAll(tempList);
+            getView().notifyDataChange();
+            if (tempList.size() >= 1)
+                getView().setLastId(tempList.get(tempList.size() - 1).get_id());
+            getView().notifyDataChange();
         }
     }
 
-    public void runRefresh(int perpage, int page) {
-//        Network.post(RequestFactory.GetAllDesign(perpage, 1), new Handler(), new CallBack() {
-//            @Override
-//            public void onCommon(Response response) {
-//                getView().onRefreshComplete();
-//            }
-//
-//            @Override
-//            public void onError(Response response) {
-//
-//            }
-//
-//            @Override
-//            public void onSuccess(Response response) {
-//                SpUtil.saveString(SpKey.DESIGN_LIST, response.getDataString());
-//                List<Design> tempList = JsonUtil.string2List(response.getDataString(), Design.class);
-//                if (tempList.size() == 10)
-//                    getView().addPage();
-//                list.clear();
-//                list.addAll(tempList);
-//                getView().notifyDataChange();
-//                getView().onRefreshComplete();
-//            }
-//        });
-    }
+    public void runRefresh(final String lastId) {
+        Network.post(RequestFactory.GetBlogList(lastId), new Handler(), new CallBack() {
+            @Override
+            public void onCommon(Response response) {
 
-    public void runLoad(int perpage, int page) {
+            }
 
-//        Network.post(RequestFactory.GetAllDesign(perpage, page), new Handler(), new CallBack() {
-//            @Override
-//            public void onCommon(Response response) {
-//                getView().onLoadComplete();
-//            }
-//
-//            @Override
-//            public void onError(Response response) {
-//
-//            }
-//
-//            @Override
-//            public void onSuccess(Response response) {
-//                List<Design> tempList = JsonUtil.string2List(response.getDataString(), Design.class);
-//                if (tempList.size() == 10)
-//                    getView().addPage();
-//                list.addAll(tempList);
-//                getView().notifyDataChange();
-//                getView().onLoadComplete();
-//            }
-//        });
+            @Override
+            public void onError(Response response) {
+
+            }
+
+            @Override
+            public void onSuccess(Response response) {
+                SpUtil.saveString(SpKey.DESIGN_LIST, response.getDataString());
+                List<Blog> tempList = JsonUtil.string2List(response.getDataString(), Blog.class);
+                if (tempList.size() >= 1)
+                    getView().setLastId(tempList.get(tempList.size() - 1).get_id());
+                if (lastId.equals("0"))
+                    list.clear();
+                list.addAll(tempList);
+                getView().notifyDataChange();
+                getView().onRefreshDownComplete();
+                getView().onRefreshUpComplete();
+            }
+        });
     }
 
 

@@ -7,14 +7,11 @@ import com.ytying.ytblog.base.BaseIView;
  */
 public interface IView extends BaseIView{
 
-    void onRefreshComplete();
+    void onRefreshDownComplete();
 
-    void onLoadComplete();
+    void onRefreshUpComplete();
 
     void notifyDataChange();
 
-    void addPage();
-
-    void clearPage();
-
+    void setLastId(String lastId);
 }

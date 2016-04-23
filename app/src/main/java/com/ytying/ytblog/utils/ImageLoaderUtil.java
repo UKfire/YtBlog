@@ -44,7 +44,7 @@ public class ImageLoaderUtil {
         {
             dioSquare = new DisplayImageOptions.Builder()
                     .bitmapConfig(Bitmap.Config.RGB_565)
-                    .showImageOnLoading(R.color.gray_five) //设置图片在下载期间显示的图片
+                    .showImageOnLoading(R.color.red_light) //设置图片在下载期间显示的图片
                     .showImageForEmptyUri(R.color.red_light)//设置图片Uri为空或是错误的时候显示的图片
                     .cacheInMemory(true)//设置下载的图片是否缓存在内存中
                     .cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中

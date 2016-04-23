@@ -9,7 +9,7 @@ import android.widget.ListView;
 import com.squareup.otto.Subscribe;
 import com.ytying.ytblog.R;
 import com.ytying.ytblog.YtApp;
-import com.ytying.ytblog.act.person.Act_PersonPage;
+import com.ytying.ytblog.act.person.personpage.Act_PersonPage;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.base.BaseActivity;
 import com.ytying.ytblog.component.chatbox.ChatBox;
@@ -178,6 +178,7 @@ public class MessageActivity extends BaseActivity implements IView {
     public void setActionBar(final User user) {
         if (user != null) {
             actionbar.setTitle(user.getName());
+            actionbar.removeOperateButton();
             actionbar.addOperateButton(R.mipmap.nav_bt_homepage, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

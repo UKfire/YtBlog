@@ -1,4 +1,4 @@
-package com.ytying.ytblog.activity.today;
+package com.ytying.ytblog.act.person.personpage;
 
 import android.content.Context;
 import android.view.View;
@@ -11,14 +11,14 @@ import com.ytying.ytblog.model.Blog;
 import java.util.List;
 
 /**
- * Created by UKfire on 16/3/12.
+ * Created by UKfire on 16/4/23.
  */
-public class TodayAdapter extends BaseAdapter {
+public class MyAdapter extends BaseAdapter {
 
-    Context context;
-    List<Blog> list;
+    public Context context;
+    private List<Blog> list;
 
-    public TodayAdapter(Context context, List<Blog> list) {
+    public MyAdapter(Context context, List<Blog> list) {
         this.context = context;
         this.list = list;
     }
@@ -40,7 +40,8 @@ public class TodayAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null && !(convertView instanceof Item_Design)) {
+
+        if (convertView == null || !(convertView instanceof Item_Design)) {
             Item_Design item = new Item_Design(context);
             convertView = item;
         }

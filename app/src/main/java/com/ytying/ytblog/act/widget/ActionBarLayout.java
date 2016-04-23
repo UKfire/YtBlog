@@ -71,16 +71,15 @@ public class ActionBarLayout extends FrameLayout {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         operateBtnList = new ArrayList<View>();
         leftOperateBtnList = new ArrayList<View>();
-        ivBackground = (ImageView)findViewById(R.id.ivBackground);
+        ivBackground = (ImageView) findViewById(R.id.ivBackground);
     }
 
     public void showProgressBar(boolean show) {
-        if (show){
+        if (show) {
             progressBar.setVisibility(View.VISIBLE);
             setTitle("");
             setTitle2("");
-        }
-        else
+        } else
             progressBar.setVisibility(View.GONE);
     }
 
@@ -98,8 +97,6 @@ public class ActionBarLayout extends FrameLayout {
     }
 
 
-
-
     public void setTitle(String tittle) {
 
         if (StringUtil.isBlank(tittle)) {
@@ -109,6 +106,7 @@ public class ActionBarLayout extends FrameLayout {
             tvTitle.setText(tittle);
         }
     }
+
     public void setTitle2(String tittle) {
         if (StringUtil.isBlank(tittle)) {
             tvTitle2.setVisibility(View.GONE);
@@ -155,7 +153,9 @@ public class ActionBarLayout extends FrameLayout {
         }
     }
 
-
+    public void removeOperateButton() {
+        operateLayout.removeAllViews();
+    }
 
 
     public void showIvGo() {
@@ -186,7 +186,8 @@ public class ActionBarLayout extends FrameLayout {
     public void setBackgroundResId(int resId) {
         this.setBackgroundResource(resId);
     }
-    public void setOnlineBackground(String s){
+
+    public void setOnlineBackground(String s) {
         ImageLoaderUtil.getImageLoader(getContext()).displayImage(s, ivBackground);
     }
 }

@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.ytying.ytblog.act.widget.ActionBarLayout>
 
-    <com.ytying.ytblog.act.widget.KeListView
+    <com.ytying.ytblog.component.pull2refresh.PullToRefreshListView
         android:id="@+id/today_listview"
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="match_parent"></com.ytying.ytblog.act.widget.KeListView>
+        android:layout_height="match_parent"
+        android:background="@color/white"></com.ytying.ytblog.component.pull2refresh.PullToRefreshListView>
 
 </LinearLayout>

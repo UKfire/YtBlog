@@ -85,7 +85,7 @@ public class PicBoxAdpter extends BaseAdapter {
 
                     Intent intent = new Intent(mContext, MultiImageSelectorActivity.class);
                     intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
-                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 9);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 1);
                     intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
                     intent.putStringArrayListExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, pathList);
                     ((Activity) mContext).startActivityForResult(intent, ChoosedPicBox.CHOOSE_PHOTO);

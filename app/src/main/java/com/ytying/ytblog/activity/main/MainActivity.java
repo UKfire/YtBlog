@@ -169,8 +169,8 @@ public class MainActivity extends BaseActivity {
     }
 
     @Subscribe
-    public void updateHeadView(UpdateHeadViewEvent event){
-        if(adapter != null)
+    public void updateHeadView(UpdateHeadViewEvent event) {
+        if (adapter != null)
             adapter.notifyDataSetChanged();
     }
 

@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class RequestFactory {
 
-    private static final String ROOT_URL = "http://172.19.199.205:1234/";
+    private static final String ROOT_URL = "http://120.26.213.87:1234/";
 
     //User
     private static final String Login = "login/";
@@ -66,10 +66,9 @@ public class RequestFactory {
                 .add("image", image + "");
     }
 
-    public static Request GetBlogList(String lastId, int count) {
+    public static Request GetBlogList(String lastId) {
         return createRequest(GetBlogList)
-                .add("lastId", lastId + "")
-                .add("count", count + "");
+                .add("lastId", lastId + "");
     }
 
     public static Request GetUserBlogList(String funId) {

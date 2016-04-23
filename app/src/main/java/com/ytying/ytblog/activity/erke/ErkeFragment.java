@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.ytying.ytblog.MyUser;
 import com.ytying.ytblog.R;
-import com.ytying.ytblog.act.person.Act_PersonPage;
+import com.ytying.ytblog.act.person.personpage.Act_PersonPage;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.base.BaseFragment;
 
@@ -41,4 +41,5 @@ public class ErkeFragment extends BaseFragment implements IView {
             }
         }, false);
     }
+
 }

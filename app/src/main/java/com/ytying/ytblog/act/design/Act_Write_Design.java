@@ -132,6 +132,10 @@ public class Act_Write_Design extends BaseActivity {
      * 发微博
      */
     private void sendBlog() {
+        if (pathList.size() == 0) {
+            showToast("必须上传一张图片");
+            return;
+        }
         showLoading("正在发表请稍后");
         Network.uploadFile(RequestFactoryFile.AddBlogPic(pathList.get(0), MyUser.loadUid()), new Handler(), new CallBack() {
             @Override

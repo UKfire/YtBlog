@@ -1,4 +1,4 @@
-package com.ytying.ytblog.act.person;
+package com.ytying.ytblog.act.person.personpage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import com.ytying.ytblog.YtApp;
 import com.ytying.ytblog.act.widget.ActionBarLayout;
 import com.ytying.ytblog.base.BaseActivity;
 import com.ytying.ytblog.event.UpdateHeadViewEvent;
+import com.ytying.ytblog.model.Blog;
 import com.ytying.ytblog.model.domin.DbUser;
 import com.ytying.ytblog.model.domin.User;
 import com.ytying.ytblog.network.CallBack;
@@ -23,6 +24,8 @@ import com.ytying.ytblog.network.Network;
 import com.ytying.ytblog.network.RequestFactory;
 import com.ytying.ytblog.network.RequestFactoryFile;
 import com.ytying.ytblog.network.Response;
+import com.ytying.ytblog.service.UserGetMagic;
+import com.ytying.ytblog.service.UserGetThread;
 import com.ytying.ytblog.utils.BmpUtil;
 import com.ytying.ytblog.utils.DoUtil;
 import com.ytying.ytblog.utils.ImageLoaderUtil;
@@ -45,6 +48,8 @@ public class Act_PersonPage extends BaseActivity {
     private ImageView background;
     private TextView nickname;
     private ListView listView;
+    private MyAdapter adapter;
+    private List<Blog> list = new ArrayList<>();
 
     private ArrayList<String> pathList = new ArrayList<>();
     private User user = null;
@@ -77,16 +82,62 @@ public class Act_PersonPage extends BaseActivity {
         headImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Act_PersonPage.this, MultiImageSelectorActivity.class);
-                intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
-                intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 1);
-                intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
-                intent.putStringArrayListExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, pathList);
-                startActivityForResult(intent, REQUEST_IMAGE);
+                if(user.getFunId().equals(MyUser.loadUid())) {
+                    Intent intent = new Intent(Act_PersonPage.this, MultiImageSelectorActivity.class);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 1);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
+                    intent.putStringArrayListExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, pathList);
+                    startActivityForResult(intent, REQUEST_IMAGE);
+                }
             }
         });
 
         updateUI(user);
+
+        if (user.getName().equals("")) {
+            //异步拉取
+            UserGetMagic.callTask(user.getFunId(), new UserGetThread.UpdateUIListener() {
+                @Override
+                public void onSuccess(User u) {
+                    user = u;
+                    updateUI(u);
+                }
+
+                @Override
+                public void onFail(Response response) {
+
+                }
+            });
+        }
+
+        adapter = new MyAdapter(this, list);
+        listView.setAdapter(adapter);
+
+        getBlogList();
+    }
+
+    public void getBlogList() {
+        Network.post(RequestFactory.GetUserBlogList(user.getFunId()), new Handler(), new CallBack() {
+            @Override
+            public void onCommon(Response response) {
+
+            }
+
+            @Override
+            public void onError(Response response) {
+
+            }
+
+            @Override
+            public void onSuccess(Response response) {
+                List<Blog> tempList = JsonUtil.string2List(response.getDataString(), Blog.class);
+                list.clear();
+                list.addAll(tempList);
+                if (adapter != null)
+                    adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void updateUI(User user) {

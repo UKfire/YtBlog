@@ -55,6 +55,13 @@ public class TomorrowFragment extends BaseFragment implements IView {
         presenter.refreshListView();
     }
 
+    @Override
+    public void onDestroy() {
+        YtApp.getOtto().unregister(this);
+        super.onDestroy();
+    }
+
+
     @Subscribe
     public void onDeleteConversation(DeleteConversationEvent event){
         presenter.refreshListView();
