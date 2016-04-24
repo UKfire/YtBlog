@@ -3,7 +3,7 @@
     <item android:color="@color/green_dark"
           android:state_pressed="true"/>
     <!-- pressed -->
-    <item android:color="@color/green_dark"
+    <item android:color="@color/red_dark"
           android:state_selected="true"/>
     <!-- focused -->
     <item android:color="@color/gray_four"
