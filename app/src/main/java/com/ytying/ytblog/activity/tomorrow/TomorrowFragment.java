@@ -38,7 +38,7 @@ public class TomorrowFragment extends BaseFragment implements IView {
         super.onActivityCreated(savedInstanceState);
         YtApp.getOtto().register(this);
         presenter = new Presenter(this);
-        actionbar.setTitle("光影安大");
+        actionbar.setTitle("聊一聊");
         actionbar.addOperateButton(R.mipmap.nav_icon_menu, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

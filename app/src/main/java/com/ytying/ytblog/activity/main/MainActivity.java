@@ -214,7 +214,7 @@ public class MainActivity extends BaseActivity {
         Timer timer = null;
         if (isExit == false) {
             isExit = true;
-            Toast.makeText(this, "再按一次退出苹子与桔果", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "再按一次退出校园微博", Toast.LENGTH_SHORT).show();
             timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override

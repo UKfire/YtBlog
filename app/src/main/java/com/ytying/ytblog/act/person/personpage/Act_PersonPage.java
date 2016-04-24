@@ -41,7 +41,8 @@ import me.nereo.multi_image_selector.MultiImageSelectorActivity;
  */
 public class Act_PersonPage extends BaseActivity {
 
-    private static final int REQUEST_IMAGE = 816;
+    private static final int REQUEST_HEAD = 816;
+    private static final int REQUEST_BACK = 523;
 
     private ActionBarLayout actionbar;
     private ImageView headImage;
@@ -82,13 +83,27 @@ public class Act_PersonPage extends BaseActivity {
         headImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(user.getFunId().equals(MyUser.loadUid())) {
+                if (user.getFunId().equals(MyUser.loadUid())) {
                     Intent intent = new Intent(Act_PersonPage.this, MultiImageSelectorActivity.class);
                     intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
                     intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 1);
                     intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
                     intent.putStringArrayListExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, pathList);
-                    startActivityForResult(intent, REQUEST_IMAGE);
+                    startActivityForResult(intent, REQUEST_HEAD);
+                }
+            }
+        });
+
+        background.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user.getFunId().equals(MyUser.loadUid())){
+                    Intent intent = new Intent(Act_PersonPage.this, MultiImageSelectorActivity.class);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 1);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
+                    intent.putStringArrayListExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, pathList);
+                    startActivityForResult(intent, REQUEST_BACK);
                 }
             }
         });
@@ -181,11 +196,49 @@ public class Act_PersonPage extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case REQUEST_IMAGE:
+                case REQUEST_HEAD:
                     List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
                     uploadHeadImage(path);
                     break;
+                case REQUEST_BACK:
+                    List<String> p = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                    uploadBackImage(p);
+                    break;
             }
+        }
+    }
+
+    private void uploadBackImage(List<String> p) {
+        if (p.size() > 0) {
+            String s = p.get(0);
+            BmpUtil.DefinationLevel dLevel = BmpUtil.DefinationLevel.int2enum(2);
+            String file = "";
+            try {
+                Bitmap bmp = BmpUtil.compressImageFromFile(s, dLevel);
+                file = BmpUtil.compressBmpToFile(bmp, dLevel);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Network.uploadFile(RequestFactoryFile.UploadBackImage(file), new Handler(), new CallBack() {
+                @Override
+                public void onCommon(Response response) {
+
+                }
+
+                @Override
+                public void onError(Response response) {
+                    DoUtil.showToast(Act_PersonPage.this, "上传失败");
+                }
+
+                @Override
+                public void onSuccess(Response response) {
+                    DoUtil.showToast(Act_PersonPage.this, "上传成功");
+                    Refresh();
+                }
+            });
+        } else {
+
         }
     }
 

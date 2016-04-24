@@ -41,7 +41,7 @@ public class TodayFragment extends BaseFragment implements IView {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        actionbar.setTitle("光影安大");
+        actionbar.setTitle("光影校园");
         actionbar.addOperateButton(R.mipmap.nav_icon_menu, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
