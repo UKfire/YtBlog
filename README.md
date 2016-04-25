@@ -1,1 +1,1 @@
-# 慧装修 Android端
+# 校园微博Android端
